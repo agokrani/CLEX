@@ -5,4 +5,4 @@ gradio_client==0.4.0
 torch==2.0.1
 transformers==4.36.2
 torchdiffeq==0.2.3
-einops=0.6.1
+einops==0.6.1
