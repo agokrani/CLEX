@@ -75,8 +75,8 @@ def build_clex_args(config, model_args):
         "max_factor": model_args.max_factor,
         "param_factor": model_args.param_factor,
         "act": model_args.clex_act,
-        "time_dt": 0.01,
-        "factor": 1
+        "factor": 1,
+        "time_dt": model_args.time_dt
     }
     
 
@@ -107,7 +107,6 @@ def train():
         use_flash_attention_2=model_args.use_flashattn,
         torch_dtype=torch.bfloat16,
         _fast_init=False,
-        device_map="auto"
     )
     model.config.use_cache = False
     tokenizer = transformers.AutoTokenizer.from_pretrained(

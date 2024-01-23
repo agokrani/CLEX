@@ -66,7 +66,12 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 tokenizer = AutoTokenizer.from_pretrained("DAMO-NLP-SG/CLEX-7B-16K", trust_remote_code=True)
-model = AutoModelForCausalLM.from_pretrained("DAMO-NLP-SG/CLEX-7B-16K", torch_dtype=torch.bfloat16)
+model = AutoModelForCausalLM.from_pretrained(
+  "DAMO-NLP-SG/CLEX-7B-16K",
+  torch_dtype=torch.bfloat16,
+  trust_remote_code=True,
+  use_flash_attention_2=True
+)
 inputs = tokenizer("What is CLEX?", return_tensors="pt")
 sample = model.generate(**inputs, max_length=128)
 print(tokenizer.decode(sample[0]))
@@ -146,8 +151,8 @@ The CLEX-Phi-2-2.7B and CLEX-Mixtral-8x7B are trained on [LongCorpus-2.5B](https
 |                   | Train Length | Eval.(32k) | Eval.(64k) | Eval.(128k) | Eval.(256k) |
 | ----------------- | ------------ | ---------- | ---------- | ----------- | ----------- |
 | Phi-2-2.7B        | 2k           | >100       | >100       | >100        | >100        |
+| CLEX-Phi-2-2.7B   | 32k          | 5.11       | 5.17       | 6.55        | -           |
 | Mixtral-8x7B      | 32k          | 2.78       | 3.44       | 5.88        | 14.20       |
-| CLEX-Phi-2-2.7B   | 32k          | 5.96       | 6.07       | 7.46        | -           |
 | CLEX-Mixtral-8x7B | 32k          | 2.56       | 2.53       | 2.57        | 3.78        |
 
 

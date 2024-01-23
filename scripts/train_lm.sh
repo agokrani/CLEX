@@ -11,7 +11,7 @@ train/train_lm.py \
     --gradient_accumulation_steps 4 \
     --evaluation_strategy "no" \
     --save_strategy "steps" \
-    --save_steps 200 \
+    --save_steps 50 \
     --save_total_limit 2 \
     --max_steps 250 \
     --learning_rate 2e-5 \
@@ -27,4 +27,4 @@ train/train_lm.py \
     --do_eval False \
     --do_predict False \
     --log_scale False \
-    #--deepspeed "playground/deepspeed_zero3_offload.json"
+    --deepspeed "playground/deepspeed_zero3_offload.json"
