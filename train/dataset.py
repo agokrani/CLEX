@@ -95,20 +95,20 @@ def chars_token_ratio(dataset, tokenizer, data_column, nb_examples=40):
 
 def create_datasets(tokenizer, training_args, data_path):
     raw_datasets = load_dataset("json", data_files=data_path)
-    train_data, valid_data = raw_datasets["train"], raw_datasets["test"]
+    train_data, valid_data = raw_datasets["train"], raw_datasets["test"] if "test" in raw_datasets.keys() else None
     train_dataset, valid_dataset = None, None
     if training_args.do_train:
         print(f"Size of the train set: {len(train_data)}")
         column_names = train_data.column_names
         dataset_text_field = "text" if "text" in column_names else column_names[0]
-        # chars_per_token = chars_token_ratio(train_data, tokenizer, dataset_text_field)
-        # print(f"The character to token ratio of the dataset is: {chars_per_token:.2f}")
+        #chars_per_token = chars_token_ratio(train_data, tokenizer, dataset_text_field)
+        #print(f"The character to token ratio of the dataset is: {chars_per_token:.2f}")
         train_dataset = ConstantLengthDataset(
             tokenizer,
             train_data,
             infinite=True,
             seq_length=training_args.model_max_length,
-            chars_per_token=3.4,
+            chars_per_token=4.56,
             num_of_sequences=256,
             content_field=dataset_text_field,
             shuffle=True,

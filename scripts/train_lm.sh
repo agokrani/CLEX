@@ -13,7 +13,7 @@ train/train_lm.py \
     --save_strategy "steps" \
     --save_steps 200 \
     --save_total_limit 2 \
-    --max_steps -1 \
+    --max_steps 250 \
     --learning_rate 2e-5 \
     --weight_decay 0. \
     --warmup_ratio 0.03 \
@@ -25,6 +25,6 @@ train/train_lm.py \
     --ddp_find_unused_parameters True \
     --do_train True \
     --do_eval False \
-    --do_predict True \
+    --do_predict False \
     --log_scale False \
-    --deepspeed playground/deepspeed_zero3_offload.json
+    #--deepspeed "playground/deepspeed_zero3_offload.json"

@@ -24,7 +24,7 @@ class ModelArguments:
     )
     clex_act: str = field(
         default="tanh",
-        choices=["tanh", "silu"],
+        #choices=["tanh", "silu"],
         metadata={
             "help": "The activation function."
         },
